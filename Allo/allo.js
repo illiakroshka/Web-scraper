@@ -1,25 +1,20 @@
 'use strict';
 
-const fs = require('fs');
+const https = require('https');
+const fs = require('fs')
 
-const URL = 'https://allo.ua/ru/products/notebooks/'
+https.get('https://allo.ua/ru/products/notebooks/', (resp)=>{
 
-const sendRequest = (url) => {
-  return fetch(url).then(response => {
-    if (response.ok) {
-      return response.text()
-    }
-    else {
-      return response.text().then(text => {
-        throw new Error(text)
-      })
-    }
-  })
-}
+  let data = '';
 
-sendRequest(URL)
-  .then(data => {
-    console.log(typeof data);
-    fs.writeFileSync('.\Allo.html', data)
-  })
-  .catch(error => console.log(error))
+  resp.on('data', (chunk) => {
+    data += chunk;
+  });
+
+  resp.on('end', () => {
+    fs.writeFileSync('.\Allo.html',data)
+  });
+  
+}).on("error", (err) => {
+    console.log("Error: " + err.message);
+});

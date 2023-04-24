@@ -17,7 +17,6 @@ for (let i = 0; i < nameList.length; i++) {
 
 const priceList = dom.window.document.querySelectorAll('.v-pb__cur')
 
-console.log(priceList.length);
 
 for (let i = 0; i < priceList.length; i++) {
   const value = priceList[i].firstChild.textContent.trim();
