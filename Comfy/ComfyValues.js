@@ -9,8 +9,10 @@ const html = fs.readFileSync('.\Comfy.html', 'utf8');
 const dom = new JSDOM(html);
 
 const nameList = dom.window.document.querySelectorAll('.products-list-item__name');
+const priseList = dom.window.document.querySelectorAll('.products-list-item__actions-price-current')
 
 for (let i = 0; i < nameList.length; i++) {
-  const value = nameList[i].firstChild.textContent.trim();
-  console.log(value);
+  const pruductName = nameList[i].firstChild.textContent.trim();
+  const productPrice = priseList[i].firstChild.textContent.trim();
+  console.log(pruductName, productPrice);
 }
