@@ -31,3 +31,5 @@ const writeAlloValue = (data) => {
   const content = JSON.stringify(db);
   fs.writeFileSync('./database.json',content)
 }
+
+module.exports = { writeComfyValue, writeAlloValue, getData };

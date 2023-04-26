@@ -1,24 +1,24 @@
 'use strict';
 
+const fs = require('fs');
+const database = require('../database')
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const fs = require('fs');
+
 
 const html = fs.readFileSync('.\Allo.html', 'utf8');
 
 const dom = new JSDOM(html);
 
-const nameList = dom.window.document.querySelectorAll('.product-card__title')
+const nameList = dom.window.document.querySelectorAll('.product-card__title');
+const priceList = dom.window.document.querySelectorAll('.v-pb__cur');
 
+const products = [];
 for (let i = 0; i < nameList.length; i++) {
-  const value = nameList[i].firstChild.textContent.trim();
-  console.log(value);
+  const pruductName = nameList[i].firstChild.textContent.trim();
+  const pruductPrice = priceList[i].firstChild.textContent.trim();
+  const productObj = { name: pruductName, price: pruductPrice };
+  products.push(productObj);
 }
 
-const priceList = dom.window.document.querySelectorAll('.v-pb__cur')
-
-
-for (let i = 0; i < priceList.length; i++) {
-  const value = priceList[i].firstChild.textContent.trim();
-  console.log(value);
-}
+database.writeAlloValue(products);
