@@ -2,19 +2,20 @@
 
 const http = require('http');
 const fs = require('fs');
+const querystring = require('querystring');
 
 const PORT = 3000;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((req,res)=>{
   console.log('Server request');
 
-  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Content-Type','text/html');
 
-  if (req.url = '/') {
-    fs.readFile('./index.html', (err, data) => {
-      if (err) {
+  if (req.url === '/'){
+    fs.readFile('./index.html', (err,data)=>{
+      if (err){
         console.log(err);
-        res.end;
+        res.end();
       }
       else {
         res.write(data);
@@ -22,13 +23,18 @@ const server = http.createServer((req, res) => {
       }
     })
   }
+  if (req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      let formData = querystring.parse(body);
+
+    });
+  }
 })
 
-server.listen(PORT, (error) => {
-  if (error) {
-    console.log(error);
-  }
-  else {
-    console.log(`Server listening at http://localhost:${PORT}`);
-  }
+server.listen(PORT,(error)=>{
+  error ? console.log(error) : console.log(`Server listening at http://localhost:${PORT}`)
 })
