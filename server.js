@@ -3,13 +3,14 @@
 const http = require('http');
 const fs = require('fs');
 const querystring = require('querystring');
+const seach = require('./search');
 
 const PORT = 3000;
 
 const server = http.createServer((req,res)=>{
   console.log('Server request');
 
-  res.setHeader('Content-Type','text/html');
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
   if (req.url === '/'){
     fs.readFile('./index.html', (err,data)=>{
@@ -29,8 +30,22 @@ const server = http.createServer((req,res)=>{
       body += chunk;
     });
     req.on('end', () => {
-      let formData = querystring.parse(body);
-
+      const formData = querystring.parse(body);
+      let laptopComfy = seach.comfySearch(formData.name);
+      let laptopAllo = seach.alloSearch(formData.name);
+      let html = '';
+      if (laptopComfy) {
+        html += '<div>The pruduct in comfy ' + laptopComfy.name + ' ' + laptopComfy.price + '₴</div>';
+      } else {
+        html += '<div>There is no such laptop in comfy</div>';
+      }
+      if (laptopAllo) {
+        html += '<div>The product in allo ' + laptopAllo.name + ' ' + laptopAllo.price + '₴</div>';
+      } else {
+        html += '<div>There is no such laptop in allo</div>';
+      }
+      res.write(html);
+      res.end();
     });
   }
 })
