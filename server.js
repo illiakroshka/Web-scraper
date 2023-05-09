@@ -4,6 +4,9 @@ const http = require('http');
 const fs = require('fs');
 const querystring = require('querystring');
 const seach = require('./search');
+const request = require('./request');
+const parseAllo = require('./Allo/AlloValues');
+const parseComfy = require('./Comfy/ComfyValues')
 
 const PORT = 3000;
 
@@ -23,6 +26,13 @@ const server = http.createServer((req,res)=>{
         res.end();
       }
     })
+  }
+  if (req.url === '/buttonGet' && req.method === 'POST') {
+    request.alloReuest();
+    request.comfyRequest();
+    parseAllo.parseAllo();
+    parseComfy.parseComfy();
+    res.end();
   }
   if (req.method === 'POST') {
     let body = '';
