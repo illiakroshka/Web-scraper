@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script>
+    const handleButtonGetClick = () => {
+      fetch('/buttonGet', { method: 'POST' });
+    }
+  </script>
 </head>
+
 <body>
   <label for="buttonGet">To get data press this button</label>
-  <button id="buttonGet">submit</button>
-  
+  <button onclick="handleButtonGetClick()" id="buttonGet">submit</button>
   <br />
   <br />
-  
-<form action="/" method="POST">
-  <label for="name">Enter the product name:</label>
-  <input type="text" id="name" name="name"><br><br>
-  <input type="submit" value="Submit">
-</form>
+  <form action="/" method="POST">
+    <label for="name">Enter the product name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <input type="submit" value="Submit">
+  </form>
 </body>
 </html>
