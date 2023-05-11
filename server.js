@@ -6,7 +6,8 @@ const querystring = require('querystring');
 const seach = require('./search');
 const request = require('./request');
 const parseAllo = require('./Allo/AlloValues');
-const parseComfy = require('./Comfy/ComfyValues')
+const parseComfy = require('./Comfy/ComfyValues');
+const database = require('./database');
 
 const PORT = 3000;
 
@@ -63,3 +64,21 @@ const server = http.createServer((req,res)=>{
 server.listen(PORT,(error)=>{
   error ? console.log(error) : console.log(`Server listening at http://localhost:${PORT}`)
 })
+
+server.on('close', () => {
+  fs.writeFileSync('./allo.html', '', (err) => {
+  if (err) throw err;
+  });
+  fs.writeFileSync('./comfy.html', '', (err) => {
+  if (err) throw err;
+  })
+  database.resetDatabase();
+})
+
+process.on('SIGINT', () => {
+  console.log('Stopping server...');
+  server.close(() => {
+    console.log('Server stopped');
+    process.exit();
+  });
+});
