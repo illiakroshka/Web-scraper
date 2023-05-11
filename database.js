@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-const createDataBase = () => {
+const resetDatabase = () => {
   const db = {
     Comfy: [],
     Allo: [],
@@ -12,7 +12,7 @@ const createDataBase = () => {
 }
 
 const getData = () => {
-  if (!fs.existsSync('./database.json')) createDataBase();
+  if (!fs.existsSync('./database.json')) resetDatabase();
   const content = fs.readFileSync('./database.json', 'utf-8');
   const data = JSON.parse(content);
   return data; 
@@ -32,4 +32,4 @@ const writeAlloValue = (data) => {
   fs.writeFileSync('./database.json',content)
 }
 
-module.exports = { writeComfyValue, writeAlloValue, getData };
+module.exports = { writeComfyValue, writeAlloValue, getData, resetDatabase };
