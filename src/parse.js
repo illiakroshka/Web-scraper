@@ -6,7 +6,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 const parseAllo = () => {
-  const html = fs.readFileSync('./Allo.html', 'utf8');
+  const html = fs.readFileSync('./src/data/allo.html', 'utf8');
 
   const dom = new JSDOM(html);
 
@@ -25,7 +25,7 @@ const parseAllo = () => {
 };
 
 const parseComfy = () => {
-  const html = fs.readFileSync('./Comfy.html', 'utf8');
+  const html = fs.readFileSync('./src/data/comfy.html', 'utf8');
 
   const dom = new JSDOM(html);
 

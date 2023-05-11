@@ -16,7 +16,7 @@ const comfyRequest = (URL = COMFY_URL) => {
     });
 
     resp.on('end', () => {
-      fs.writeFileSync('./Comfy.html', data)
+      fs.writeFileSync('./src/data/comfy.html', data)
     });
   
   }).on("error", (err) => {
@@ -34,7 +34,7 @@ const alloReuest = (URL = ALLO_URL) => {
     });
 
     resp.on('end', () => {
-      fs.writeFileSync('./Allo.html', data)
+      fs.writeFileSync('./src/data/allo.html', data)
     });
   
   }).on("error", (err) => {

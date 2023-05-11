@@ -16,7 +16,7 @@ const server = http.createServer((req,res)=>{
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
   if (req.url === '/'){
-    fs.readFile('./index.html', (err,data)=>{
+    fs.readFile('./src/public/index.html', (err,data)=>{
       if (err){
         console.log(err);
         res.end();
@@ -65,10 +65,10 @@ server.listen(PORT,(error)=>{
 })
 
 server.on('close', () => {
-  fs.writeFileSync('./allo.html', '', (err) => {
+  fs.writeFileSync('./src/data/allo.html', '', (err) => {
   if (err) throw err;
   });
-  fs.writeFileSync('./comfy.html', '', (err) => {
+  fs.writeFileSync('./src/data/comfy.html', '', (err) => {
   if (err) throw err;
   })
   database.resetDatabase();
