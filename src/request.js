@@ -1,4 +1,4 @@
-'use scrict';
+'use strict';
 
 const https = require('https');
 const fs = require('fs');
@@ -16,11 +16,11 @@ const comfyRequest = (URL = COMFY_URL) => {
     });
 
     resp.on('end', () => {
-      fs.writeFileSync('./src/data/comfy.html', data)
+      fs.writeFileSync('./src/data/comfy.html', data);
     });
-  
-  }).on("error", (err) => {
-    console.log("Error: " + err.message);
+
+  }).on('error', (err) => {
+    console.log('Error: ' + err.message);
   });
 };
 
@@ -34,11 +34,11 @@ const alloReuest = (URL = ALLO_URL) => {
     });
 
     resp.on('end', () => {
-      fs.writeFileSync('./src/data/allo.html', data)
+      fs.writeFileSync('./src/data/allo.html', data);
     });
-  
-  }).on("error", (err) => {
-    console.log("Error: " + err.message);
+
+  }).on('error', (err) => {
+    console.log('Error: ' + err.message);
   });
 };
 

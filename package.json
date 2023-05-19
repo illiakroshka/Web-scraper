@@ -10,5 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "jsdom": "^22.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0"
   }
 }

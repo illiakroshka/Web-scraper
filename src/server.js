@@ -10,22 +10,21 @@ const database = require('./database');
 
 const PORT = 3000;
 
-const server = http.createServer((req,res)=>{
+const server = http.createServer((req, res) => {
   console.log('Server request');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
-  if (req.url === '/'){
-    fs.readFile('./src/public/index.html', (err,data)=>{
-      if (err){
+  if (req.url === '/') {
+    fs.readFile('./src/public/index.html', (err, data) => {
+      if (err) {
         console.log(err);
         res.end();
-      }
-      else {
+      } else {
         res.write(data);
         res.end();
       }
-    })
+    });
   }
   if (req.url === '/buttonGet' && req.method === 'POST') {
     request.alloReuest();
@@ -36,13 +35,13 @@ const server = http.createServer((req,res)=>{
   }
   if (req.method === 'POST') {
     let body = '';
-    req.on('data', chunk => {
+    req.on('data', (chunk) => {
       body += chunk;
     });
     req.on('end', () => {
       const formData = querystring.parse(body);
-      let laptopComfy = seach.comfySearch(formData.name);
-      let laptopAllo = seach.alloSearch(formData.name);
+      const laptopComfy = seach.comfySearch(formData.name);
+      const laptopAllo = seach.alloSearch(formData.name);
       let html = '';
       if (laptopComfy) {
         html += '<div>The pruduct in comfy ' + laptopComfy.name + ' ' + laptopComfy.price + '₴</div>';
@@ -58,21 +57,21 @@ const server = http.createServer((req,res)=>{
       res.end();
     });
   }
-})
+});
 
-server.listen(PORT,(error)=>{
-  error ? console.log(error) : console.log(`Server listening at http://localhost:${PORT}`)
-})
+server.listen(PORT, (error) => {
+  error ? console.log(error) : console.log(`Server listening at http://localhost:${PORT}`);
+});
 
 server.on('close', () => {
   fs.writeFileSync('./src/data/allo.html', '', (err) => {
-  if (err) throw err;
+    if (err) throw err;
   });
   fs.writeFileSync('./src/data/comfy.html', '', (err) => {
-  if (err) throw err;
-  })
+    if (err) throw err;
+  });
   database.resetDatabase();
-})
+});
 
 process.on('SIGINT', () => {
   console.log('Stopping server...');

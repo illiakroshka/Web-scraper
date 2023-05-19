@@ -1,8 +1,8 @@
 'use strict';
 
 const fs = require('fs');
-const database = require('./database')
-const jsdom = require("jsdom");
+const database = require('./database');
+const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const parseAllo = () => {
