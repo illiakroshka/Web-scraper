@@ -24,7 +24,7 @@ const comfyRequest = (URL = COMFY_URL) => {
   });
 };
 
-const alloReuest = (URL = ALLO_URL) => {
+const alloRequest = (URL = ALLO_URL) => {
   https.get(URL, (resp) => {
 
     let data = '';
@@ -42,4 +42,4 @@ const alloReuest = (URL = ALLO_URL) => {
   });
 };
 
-module.exports = { comfyRequest, alloReuest };
+module.exports = { comfyRequest, alloRequest };

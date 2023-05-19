@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use strict';
 
 const http = require('http');
@@ -27,7 +28,7 @@ const server = http.createServer((req, res) => {
     });
   }
   if (req.url === '/buttonGet' && req.method === 'POST') {
-    request.alloReuest();
+    request.alloRequest();
     request.comfyRequest();
     parse.parseAllo();
     parse.parseComfy();
