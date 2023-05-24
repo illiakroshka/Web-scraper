@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
     parse.parseComfy();
     res.end();
   }
-  if (req.method === 'POST') {
+  if (req.method === 'POST' && req.url === '/submit') {
     let body = '';
     req.on('data', (chunk) => {
       body += chunk;
