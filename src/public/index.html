@@ -6,6 +6,60 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
   <script>
     const handleButtonGetClick = () => {
       fetch('/buttonGet', { method: 'POST' });
@@ -14,14 +68,19 @@
 </head>
 
 <body>
-  <label for="buttonGet">To get data press this button</label>
-  <button onclick="handleButtonGetClick()" id="buttonGet">submit</button>
-  <br />
-  <br />
-  <form action="/submit" method="POST">
-    <label for="name">Enter the product name:</label>
-    <input type="text" id="name" name="name"><br><br>
-    <input type="submit" value="Submit">
-  </form>
+  <div class="container">
+    <h1>Web-scraper</h1>
+    <label for="buttonGet">To get data, press this button:</label>
+    <button onclick="handleButtonGetClick()" id="buttonGet">Submit</button>
+    <br /><br />
+    <form action="/submit" method="POST">
+      <label for="name">Enter the product name:</label>
+      <input type="text" id="name" name="name"><br /><br />
+      <div class="button-container">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
 </body>
+
 </html>
